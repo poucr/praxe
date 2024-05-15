@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="src/output.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            discord: '#1e1f22',
+          }
+        }
+      }
+    }
+  </script>
   <title>Document</title>
 </head>
 <body>
-  <aside class="flex flex-col fixed h-screen w-16">
+  <aside class="flex flex-col fixed top-0 left-0 h-screen w-16 bg-discord text-white shadow-lg">
     <span>A</span>
     <span>B</span>
     <span>C</span>
