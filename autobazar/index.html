@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Document</title>
+</head>
+<body id="app">
+  <nav>
+    <a href="#">AutoBazar</a>
+    <ul>
+      <li v-for="(page, index) in pages" :key="index">
+        <a
+          href="#"
+          
+        > {{ page.link }} 
+        </a>
+      </li>
+    </ul>
+  </nav>
+  
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          pages: [
+            { link: 'Home', pageTitle: 'Home Page', pageContent: 'Home content' },
+            { link: 'About', pageTitle: 'About Page', pageContent: 'About content' },
+            { link: 'Contact', pageTitle: 'Contact Page', pageContent: 'Contact content' },
+          ]
+        };
+      }
+    });
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

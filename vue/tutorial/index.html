@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Document</title>
+</head>
+<body id="app">
+  <navbar
+    :pages="pages"
+    :active-page="activePage"
+    :nav-link-click="(index) => activePage = index"
+  ></navbar>
+  
+  <page-viewer
+    :page="pages[activePage]"
+  ></page-viewer>
+  
+  <script>
+    let app = Vue.createApp({
+      data() {
+        return {
+          activePage: 0,
+          pages: [
+          {
+            link: { text: 'Home', url: 'index.html'},
+            pageTitle: 'Home Page',
+            content: 'Welcome to the blablabla'
+          },
+          {
+            link: { text: 'About', url: 'about.html'},
+            pageTitle: 'About Page',
+            content: 'Welcome to the blablabla'
+          },
+          {
+            link: { text: 'Contact', url: 'contact.html'},
+            pageTitle: 'Contact Page',
+            content: 'Welcome to the blablabla'
+          },
+          ]
+        }
+      }
+    })
+
+    app.component('page-viewer', {
+      props: ['page'],
+      template: `
+      <div class="m-4">
+        <h1 class="text-3xl font-bold"> {{page.pageTitle}} </h1>
+        <p> {{page.content}} </p>
+      </div>
+      `
+    });
+
+    app.component('navbar', {
+      props: ['pages', 'activePage', 'navLinkClick'],
+      template: `
+      <nav id="nav" class="flex gap-6 text-gray-600 m-2">
+        <a class="font-semibold text-xl" href="#">My Vue</a>
+        <ul class="flex gap-4 text-lg">
+          <li v-for="(page, index) in pages" :key="index">
+            <a
+              :class="{'text-gray-950 font-semibold': activePage == index}"
+              :href="page.link.url"
+              :title="\`This link goes to \${page.link.text}\`"
+              @click.prevent="navLinkClick(index)"
+            >{{page.link.text}}</a>
+          </li>
+        </ul>
+      </nav>
+      `
+    });
+    
+    app.mount('#app')
+  </script>
+</body>
+</html>
